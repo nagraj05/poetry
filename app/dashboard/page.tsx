@@ -1,15 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useAuthors } from "@/hooks/useAuthors";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Page() {
   const { data, isLoading, error } = useAuthors();
@@ -21,19 +14,22 @@ export default function Page() {
 
   return (
     <div className="p-6">
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-      {names.map((author: string) => (
-        <Card
-          key={author}
-          className="hover:shadow-lg transition-shadow duration-200 cursor-pointer"
-        >
-          <CardHeader>
-            <CardTitle className="text-lg">{author}</CardTitle>
-            <CardDescription>Poetry Author</CardDescription>
-          </CardHeader>
-        </Card>
-      ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {names.map((author:string) => (
+          <Link
+            key={author}
+            href={`/dashboard/${encodeURIComponent(author)}`}
+            className="block"
+          >
+            <Card className="hover:shadow-lg transition-shadow duration-200 cursor-pointer">
+              <CardHeader>
+                <CardTitle className="text-lg">{author}</CardTitle>
+                <CardDescription>Poetry Author</CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
+        ))}
+      </div>
     </div>
-  </div>
   );
 }
