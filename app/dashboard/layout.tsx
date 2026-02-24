@@ -1,4 +1,3 @@
-"use client";
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   SidebarInset,
@@ -8,7 +7,8 @@ import {
 import { Separator } from "@/components/ui/separator";
 
 import { DynamicBreadcrumb } from "@/components/dynamic-breadcrumb";
-import { Button } from "@/components/ui/button";
+import { BackButton } from "@/components/back-button";
+import { SearchBar } from "@/components/search-bar";
 
 export default function DashboardLayout({
   children,
@@ -20,20 +20,20 @@ export default function DashboardLayout({
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset>
-          <header className="flex h-16 shrink-0 items-center gap-2 border-b sticky top-0 z-10 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
-            <div className="flex justify-between items-center w-full px-3">
-              <div className="flex items-center gap-2">
+          <header className="flex h-16 shrink-0 items-center border-b sticky top-0 z-10 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
+            <div className="flex justify-between items-center w-full px-4 gap-4">
+              <div className="flex items-center gap-2 overflow-hidden">
                 <SidebarTrigger />
-                <Separator orientation="vertical" className="mr-2 h-4" />
+                <Separator
+                  orientation="vertical"
+                  className="mr-2 h-4 shrink-0"
+                />
                 <DynamicBreadcrumb />
               </div>
-              <Button
-                variant={"outline"}
-                size={"sm"}
-                onClick={() => window.history.back()}
-              >
-                Back
-              </Button>
+              <div className="flex items-center gap-2 shrink-0">
+                <SearchBar />
+                <BackButton />
+              </div>
             </div>
           </header>
           {children}
