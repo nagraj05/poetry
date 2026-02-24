@@ -35,15 +35,15 @@ export default function AuthorTitlesClient({ author }: { author: string }) {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredTitles.map((title) => (
+          {filteredTitles.map((title, index) => (
             <Link
-              key={title}
+              key={index}
               href={`/dashboard/${encodeURIComponent(author)}/${encodeURIComponent(title)}`}
               className="block h-full group"
             >
               <Card className="h-full hover:shadow-md transition-shadow group-hover:border-primary">
                 <CardHeader>
-                  <CardTitle className="text-base group-hover:text-primary transition-colors">
+                  <CardTitle className="text-base group-hover:text-primary transition-colors font-serif italic tracking-tighter">
                     {title}
                   </CardTitle>
                 </CardHeader>

@@ -45,8 +45,7 @@ export function AuthorsClient() {
             >
               <Card className="hover:shadow-lg transition-shadow duration-200 cursor-pointer">
                 <CardHeader>
-                  <CardTitle className="text-lg">{author}</CardTitle>
-                  <CardDescription>Poetry Author</CardDescription>
+                  <CardTitle className="text-lg font-serif italic tracking-tighter">{author}</CardTitle>
                 </CardHeader>
               </Card>
             </Link>

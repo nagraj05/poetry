@@ -7,7 +7,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 
 export default function LandingPage() {
   return (
-    <div className="relative flex min-h-[100svh] flex-col items-center justify-between bg-white dark:bg-[#0a0a0a] text-black dark:text-[#fafafa] overflow-hidden selection:bg-primary/30 transition-colors duration-500">
+    <div className="relative flex min-h-svh flex-col items-center justify-between bg-white dark:bg-[#0a0a0a] text-black dark:text-[#fafafa] overflow-hidden selection:bg-primary/30 transition-colors duration-500">
       {/* Top Navigation */}
       <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20">
         <ModeToggle />
