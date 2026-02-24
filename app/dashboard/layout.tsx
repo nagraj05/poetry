@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { DynamicBreadcrumb } from "@/components/dynamic-breadcrumb";
 import { BackButton } from "@/components/back-button";
 import { SearchBar } from "@/components/search-bar";
+import { ModeToggle } from "@/components/mode-toggle";
 import { Suspense } from "react";
 
 export default function DashboardLayout({
@@ -32,6 +33,7 @@ export default function DashboardLayout({
                 <DynamicBreadcrumb />
               </div>
               <div className="flex items-center gap-2 shrink-0">
+                <ModeToggle />
                 <Suspense
                   fallback={
                     <div className="w-32 h-9 bg-muted animate-pulse rounded-md" />

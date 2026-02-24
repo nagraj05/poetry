@@ -1,65 +1,69 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import Link from "next/link";
+import { Feather, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/mode-toggle";
+
+export default function LandingPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="relative flex min-h-[100svh] flex-col items-center justify-between bg-white dark:bg-[#0a0a0a] text-black dark:text-[#fafafa] overflow-hidden selection:bg-primary/30 transition-colors duration-500">
+      {/* Top Navigation */}
+      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20">
+        <ModeToggle />
+      </div>
+
+      {/* Decorative background */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute top-1/3 left-1/4 w-[220px] sm:w-[350px] md:w-[500px] h-[220px] sm:h-[350px] md:h-[500px] bg-primary/20 dark:bg-primary/10 rounded-full blur-[80px] md:blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[200px] sm:w-[320px] md:w-[480px] h-[200px] sm:h-[320px] md:h-[480px] bg-primary/10 dark:bg-primary/5 rounded-full blur-[80px] md:blur-[120px]" />
+      </div>
+
+      {/* Main content */}
+      <main className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 sm:px-6 text-center max-w-4xl w-full space-y-8 sm:space-y-12">
+        {/* Logo + Title */}
+        <div className="flex flex-col items-center space-y-4 animate-in fade-in slide-in-from-bottom-8 duration-700">
+          <div className="p-3 sm:p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-sm shadow-lg">
+            <Feather className="h-7 w-7 sm:h-9 sm:w-9 text-primary dark:text-white" />
+          </div>
+
+          {/* Clamp-based responsive heading */}
+          <h1 className="font-serif italic tracking-tighter leading-none text-[clamp(3rem,10vw,7rem)]">
+            Bronte
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+        </div>
+
+        {/* Text */}
+        <div className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-bottom-12 duration-700 delay-150">
+          <p className="font-serif italic text-muted-foreground leading-relaxed mx-auto max-w-md sm:max-w-xl text-sm sm:text-lg md:text-2xl">
+            &ldquo;A library of verses, where ink meets eternity.&rdquo;
+          </p>
+
+          <div className="h-px w-16 sm:w-24 bg-linear-to-r from-transparent via-primary/50 to-transparent mx-auto" />
+
+          <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground/60 tracking-widest uppercase font-sans">
+            Curated Poetry Selection
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* CTA */}
+        <div className="animate-in fade-in slide-in-from-bottom-16 duration-700 delay-300">
+          <Link href="/dashboard">
+            <Button
+              size="lg"
+              className="h-11 sm:h-14 px-7 sm:px-10 text-sm sm:text-base md:text-lg rounded-full group bg-black dark:bg-white text-white dark:text-black hover:opacity-90 transition-all"
+            >
+              Go
+              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </Link>
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="relative z-10 mb-4 sm:mb-6 text-muted-foreground/40 text-[10px] sm:text-xs font-mono tracking-widest uppercase text-center px-4">
+        © {new Date().getFullYear()} Bronte Project
+      </footer>
     </div>
   );
 }
