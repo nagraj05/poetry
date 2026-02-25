@@ -26,14 +26,6 @@ const data = {
           title: "Authors",
           url: "#",
         },
-//      {
-//          title: "Lines",
-//          url: "#",
-//        },
-{
-title: "Words",
-url:"/",
-}
       ],
     },
   ],
