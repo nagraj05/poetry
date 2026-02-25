@@ -30,6 +30,10 @@ const data = {
 //          title: "Lines",
 //          url: "#",
 //        },
+{
+title: "Words",
+url:"/",
+}
       ],
     },
   ],
