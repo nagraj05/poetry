@@ -5,7 +5,6 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
-
 import { DynamicBreadcrumb } from "@/components/dynamic-breadcrumb";
 import { BackButton } from "@/components/back-button";
 import { SearchBar } from "@/components/search-bar";
@@ -18,36 +17,36 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-      <SidebarProvider>
-        <AppSidebar />
-        <SidebarInset>
-          <header className="flex h-16 shrink-0 items-center border-b sticky top-0 z-10 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
-            <div className="flex justify-between items-center w-full px-4 gap-4">
-              <div className="flex items-center gap-2 overflow-hidden">
-                <SidebarTrigger />
-                <Separator
-                  orientation="vertical"
-                  className="mr-2 h-4 shrink-0"
-                />
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <header className="flex h-11 shrink-0 items-center border-b border-border/50 sticky top-0 z-10 bg-background/90 backdrop-blur-sm">
+          <div className="flex justify-between items-center w-full px-4 gap-3">
+            <div className="flex items-center gap-2 overflow-hidden min-w-0">
+              <SidebarTrigger className="h-6 w-6 text-muted-foreground/60 hover:text-foreground" />
+              <Separator
+                orientation="vertical"
+                className="h-3 shrink-0 opacity-40"
+              />
+              <div className="hidden sm:block">
                 <DynamicBreadcrumb />
               </div>
-              <div className="flex items-center gap-2 shrink-0">
-                <ModeToggle />
-                <Suspense
-                  fallback={
-                    <div className="w-32 h-9 bg-muted animate-pulse rounded-md" />
-                  }
-                >
-                  <SearchBar />
-                </Suspense>
-                <BackButton />
-              </div>
             </div>
-          </header>
-          {children}
-        </SidebarInset>
-      </SidebarProvider>
-    </>
+            <div className="flex items-center gap-2.5 shrink-0">
+              <ModeToggle />
+              <Suspense
+                fallback={
+                  <div className="w-28 h-7 bg-muted animate-pulse rounded" />
+                }
+              >
+                <SearchBar />
+              </Suspense>
+              <BackButton />
+            </div>
+          </div>
+        </header>
+        {children}
+      </SidebarInset>
+    </SidebarProvider>
   );
 }

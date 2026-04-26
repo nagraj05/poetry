@@ -3,12 +3,6 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useAuthors } from "@/hooks/useAuthors";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { PoetryLoader } from "@/components/poetry-loader";
 
 export function AuthorsClient() {
@@ -17,7 +11,12 @@ export function AuthorsClient() {
   const query = searchParams.get("q")?.toLowerCase() ?? "";
 
   if (isLoading) return <PoetryLoader />;
-  if (error) return <div className="p-6 text-red-500">{error.message}</div>;
+  if (error)
+    return (
+      <div className="flex items-center justify-center min-h-[40vh] text-destructive text-xs font-mono">
+        {error.message}
+      </div>
+    );
 
   const allNames = data?.authors ?? [];
   const filteredNames = allNames.filter((name: string) =>
@@ -25,32 +24,38 @@ export function AuthorsClient() {
   );
 
   return (
-    <div className="p-6">
+    <div className="p-6 md:p-8">
       {filteredNames.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-12 text-center">
-          <p className="text-xl font-medium text-muted-foreground">
+        <div className="flex flex-col items-center justify-center py-24 text-center gap-2">
+          <p className="font-serif italic text-muted-foreground">
             No poets found.
           </p>
-          <p className="text-sm text-muted-foreground">
-            Try a different search term.
+          <p className="text-[10px] text-muted-foreground/40 tracking-wider font-mono uppercase">
+            Try a different search.
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filteredNames.map((author: string) => (
-            <Link
-              key={author}
-              href={`/dashboard/${encodeURIComponent(author)}`}
-              className="block"
-            >
-              <Card className="hover:shadow-lg transition-shadow duration-200 cursor-pointer">
-                <CardHeader>
-                  <CardTitle className="text-lg font-serif italic tracking-tighter">{author}</CardTitle>
-                </CardHeader>
-              </Card>
-            </Link>
-          ))}
-        </div>
+        <>
+          <p className="text-[9px] tracking-[0.22em] uppercase text-muted-foreground/40 font-mono mb-6">
+            {filteredNames.length} poets
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-border/30">
+            {filteredNames.map((author: string) => (
+              <Link
+                key={author}
+                href={`/dashboard/${encodeURIComponent(author)}`}
+                className="group bg-background p-5 hover:bg-muted/50 transition-colors duration-200"
+              >
+                <p className="font-serif italic text-[0.95rem] leading-snug text-foreground/75 group-hover:text-foreground transition-colors duration-200">
+                  {author}
+                </p>
+                {/* <span className="text-[9px] tracking-[0.18em] uppercase font-mono text-muted-foreground/30 group-hover:text-muted-foreground/55 transition-colors duration-200 mt-2 block">
+                  View poems →
+                </span> */}
+              </Link>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
